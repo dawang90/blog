@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    form(class="form")
+        div(class="form-group")
+            label(for="exampleInputUser") '用户名'
+            input(class="form-control", type='text', id="exampleInputUser" , placeholder="用户名")
+        div(class="form-group")
+            label(for="exampleInputPsd") '密码'
+            input(class="form-control", type='text', id="exampleInputPsd" , placeholder="密码")
+        button(class="btn btn-primary") 登录
