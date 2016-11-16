@@ -27,6 +27,7 @@
     "koa-multer": "^1.0.0",
     "koa-session": "^3.4.0",
     "mongolass": "^2.3.2",
+    "mongoose": "^4.6.8",
     "sha1": "^1.1.1",
     "socket.io": "^1.5.1"
   }

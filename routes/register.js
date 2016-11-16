@@ -64,7 +64,7 @@ router.post('/', async function (ctx, next){
         avatar: avatar
     };
     // 用户信息写入数据库
-    UserModel.create(user)
+    await UserModel.create(user)
         .then(function (result) {
             // 此 user 是插入 mongodb 后的值，包含 _id
             user = result.ops[0];
@@ -85,7 +85,6 @@ router.post('/', async function (ctx, next){
             }
             next(e);
         });
-    return ctx.redirect('/');
 })
 
 module.exports = router;
