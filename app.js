@@ -1,20 +1,27 @@
 const Koa = require('koa');
 const app = new Koa();
+const bodyparser = require('koa-bodyparser')();
 const router = require('koa-router')();
 const views = require('koa-views');
 const co = require('co');
 const convert = require('koa-convert');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
-const bodyparser = require('koa-bodyparser')();
 const logger = require('koa-logger');
+const session = require('koa-session');
+const flash = require('koa-flash');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
 const register = require('./routes/register');
 
+const config = require('./config/dev');
+
 // middlewares
 app.use(convert(bodyparser));
+app.keys = ['foo'];
+app.use(convert(session(app)));
+app.use(convert(flash()));
 app.use(convert(json()));
 app.use(convert(logger()));
 app.use(require('koa-static')(__dirname + '/public'));
