@@ -14,6 +14,9 @@ const flash = require('koa-flash');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const register = require('./routes/register');
+const login = require('./routes/login');
+const logout = require('./routes/logout');
+const game = require('./routes/game');
 
 const config = require('./config/dev');
 
@@ -39,8 +42,11 @@ app.use(async (ctx, next) => {
 });
 
 router.use('/', index.routes(), index.allowedMethods());
+router.use('/login', login.routes(), login.allowedMethods());
 router.use('/register', register.routes(), register.allowedMethods());
 router.use('/users', users.routes(), users.allowedMethods());
+router.use('/logout', logout.routes(), logout.allowedMethods());
+router.use('/game', game.routes(), game.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response

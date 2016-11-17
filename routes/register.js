@@ -2,12 +2,13 @@ const path = require('path');
 const sha1 = require('sha1');
 const router = require('koa-router')();
 const UserModel = require('../models/users');
+const checkNotLogin = require('../middlewares/check').checkNotLogin;
 
-router.get('/', async function (ctx, next) {
+router.get('/', checkNotLogin, async function (ctx, next) {
     ctx.state = {
         title: '用户注册'
     };
-    console.log(ctx.flash);
+
     var alert = {
         danger:ctx.flash.error,
         success:ctx.flash.success
@@ -26,7 +27,7 @@ router.post('/', async function (ctx, next){
     var avatar = ctx.body.avatar;
     var password = ctx.body.password;
     var repassword = ctx.body.repassword;
-    console.log('request', ctx.request.body);
+
     // 校验参数
     try {
         if (!(name.length >= 1 && name.length <= 10)) {
@@ -64,27 +65,27 @@ router.post('/', async function (ctx, next){
         avatar: avatar
     };
     // 用户信息写入数据库
-    await UserModel.create(user)
-        .then(function (result) {
-            // 此 user 是插入 mongodb 后的值，包含 _id
-            user = result.ops[0];
-            // 将用户信息存入 session
-            delete user.password;
-            ctx.body.session.user = user;
-            // 写入 flash
-            ctx.flash = {'success': '注册成功'};
-            console.log(1111111);
-            // 跳转到首页
-            return ctx.redirect('/');
-        })
-        .catch(function (e) {
-            // 用户名被占用则跳回注册页，而不是错误页
-            if (e.message.match('E11000 duplicate key')) {
+    await UserModel.create(user).save(function(error, result){
+        if(error){
+             // 用户名被占用则跳回注册页，而不是错误页
+             console.log('error:',error);
+            if (error.message.match('E11000 duplicate key')) {
                 ctx.flash = {'error': '用户名已被占用'};
                 return ctx.redirect('/register');
             }
-            next(e);
-        });
+            next(error);
+        }else{
+            //此 user 是插入 mongodb 后的值，包含 _id
+            user = result;
+            //将用户信息存入 session
+            delete user.password;
+            ctx.body.session.user = user; 
+            //// 写入 flash
+            ctx.flash = {'success': '注册成功'};
+            // 跳转到首页
+            return ctx.redirect('/');
+        }
+    });
 })
 
 module.exports = router;

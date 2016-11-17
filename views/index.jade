@@ -1,18 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  div(style="min-height:100px;border:1px solid #000")
+  div.container
+    h1 关于我
+    p 我叫大望，男，1992年，从2013年入行web前端工作到现在已经有3年。
 
-  div
-    textarea
-    button(type="submit") 发送
 block append script
   script(src="https://cdn.socket.io/socket.io-1.4.5.js")
-  script.
-    var socket = io('http://127.0.0.1:8080');
-    socket.on('news', function (data) {
-      console.log(data);
-      socket.emit('my other event', { my: 'data' });
-    });
+  

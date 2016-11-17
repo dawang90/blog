@@ -3,12 +3,38 @@ html
   head
     title= title
     block head
-      link(rel='stylesheet', href='/stylesheets/style.css')
       link(rel='stylesheet', href='http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css')
+      link(rel='stylesheet', href='/css/common.css')
   body
+    div#header
+      div.container
+        div.pull-right
+          - if( !user )
+            a(href='/login', class='mr10') 登录
+            a(href='/register') 注册
+          - else 
+            span.mr10 #{user.name}
+            a(href='/logout', class='text-f12') 登出
+      div(class='navbar navbar-inverse navbar-static')
+        div.container
+          div(class='navbar-header')
+            button(class='navbar-toggle collapsed', type='button', data-toggle='collapse', data-target='.navbar-collapse')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar 
+            a(class="navbar-brand hidden-sm", href="/") dawangBlog
+          div(class='navbar-collapse collapse')
+            div#nav
+              ul(class='nav navbar-nav')
+                li
+                  a(href='/') Home
+                li
+                  a(href='/game') Game
     block content
     block script
       script(src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js")
       script(src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js")
+      script(src="/js/common.js")
 
 
