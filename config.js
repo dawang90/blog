@@ -1,3 +1,12 @@
-/**
- * Created by dawang on 2016/11/18.
- */
+var src = './src';
+var dest = './build';
+module.exports = {
+    paths: {
+        src: src,
+        static: src+'/public',
+        dest: dest,
+        destStatic: dest + '/public',
+        rev: dest + '/staticRev',
+        views: src + '/views/**/*.jade'
+    }
+};
