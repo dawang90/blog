@@ -10,8 +10,8 @@ html
       div.container
         div.pull-right
           - if( !user )
-            a(href='/login', class='mr10') 登录
-            a(href='/register') 注册
+            a(href='/login', class='mr10 text-f12') 登录
+            a(href='/register', class='text-f12') 注册
           - else 
             span.mr10 #{user.name}
             a(href='/logout', class='text-f12') 登出
@@ -27,9 +27,9 @@ html
           div(class='navbar-collapse collapse')
             div#nav
               ul(class='nav navbar-nav')
-                li
+                li(class="#{modal === 'home' ? 'active' : ''}")
                   a(href='/') Home
-                li
+                li(class="#{modal === 'game' ? 'active' : ''}")
                   a(href='/game') Game
     block content
     block script

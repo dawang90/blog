@@ -5,9 +5,10 @@ router.get('/', async function (ctx, next) {
         online: 0,
         user: {},
         data: {}
-    }
+    };
     ctx.state = {
         title: '随便玩',
+        modal: 'game',
         user: ctx.session.user,
         room: room
     };
