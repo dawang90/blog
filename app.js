@@ -60,13 +60,9 @@ app.on('error', function(err, ctx){
 var server = require('http').Server(app.callback()),
     io = require('socket.io')(server);
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
+ var socketGame = require('./socket/game')(io);
 
 server.listen(8080);
+
 
 module.exports = app;

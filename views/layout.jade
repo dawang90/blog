@@ -5,6 +5,13 @@ html
     block head
       link(rel='stylesheet', href='http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css')
       link(rel='stylesheet', href='/css/common.css')
+      script.
+          var CONFIG={
+              user : {
+                id: '#{user ? user._id : ''}',
+                name: '#{user ? user.name : ''}'
+              }
+          }
   body
     div#header
       div.container

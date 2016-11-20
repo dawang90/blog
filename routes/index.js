@@ -4,7 +4,7 @@ router.get('/', async function (ctx, next) {
   ctx.state = {
     title: 'dawangBolg首页',
     modal: 'home',
-    user: ctx.session.user
+    user: ctx.session.user || null
   };
   await ctx.render('index', {
   });

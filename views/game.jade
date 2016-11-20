@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    div.container-fluid
+        div.col-md-6
+            div.room-data#room-data
+                div.col-md-3.col-sm-3.col-xs-6
+                    div.room-data-ico.pull-left
+                    div
+                        div {{onlineCount}}
+                        span 在线人数
+        div.col-md-4
+        div.col-md-2
+
+block append script
+    script(src="https://unpkg.com/vue/dist/vue.js")
+    script(src="https://cdn.socket.io/socket.io-1.4.5.js")
+    script(src="/js/game.js")
+        
