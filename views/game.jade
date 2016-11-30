@@ -11,9 +11,10 @@ block content
                         span 在线人数
         div.col-md-4
         div.col-md-2
-
+    canvas#gameCanvas(style="width:800px;height:450px", width=800, height=450)
 block append script
     script(src="https://unpkg.com/vue/dist/vue.js")
     script(src="https://cdn.socket.io/socket.io-1.4.5.js")
+    script(src="/cocos2d/cocos2d-js-v3.13-lite.js", charset="UTF-8")
     script(src="/js/game.js")
-        
+

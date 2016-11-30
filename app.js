@@ -3,7 +3,6 @@ const app = new Koa();
 const bodyparser = require('koa-bodyparser')();
 const router = require('koa-router')();
 const views = require('koa-views');
-const co = require('co');
 const convert = require('koa-convert');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
