@@ -1,20 +1,33 @@
 extends layout
-
+block append head
+    link(rel='stylesheet', href='/css/game.css')
 block content
     div.container-fluid
         div.col-md-6
-            div.room-data#room-data
+            div.room-data.clearfix#room-data
                 div.col-md-3.col-sm-3.col-xs-6
                     div.room-data-ico.pull-left
                     div
                         div {{onlineCount}}
                         span 在线人数
+            p
         div.col-md-4
+            div 在线用户
+            p
+            div#players
+                ul.list-unstyled
+                    li(v-for='list in onlineUsers')
+                        p.text-overflow {{list}}
         div.col-md-2
-    canvas#gameCanvas(style="width:800px;height:450px", width=800, height=450)
+            div#lt
+                div.lt-room
+                    div.lt-message
+                        ul.list-unstyled
+                            li(v-for="list in message")
+                                span {{list.name}} : {{list.message}}
+                    textarea.lt-content.form-control(placeholder='按回车发言', v-model='content', 'v-on:keyup.enter'='send', onkeydown='if(event.keyCode == 13){event.preventDefault()}')
 block append script
-    script(src="https://unpkg.com/vue/dist/vue.js")
-    script(src="https://cdn.socket.io/socket.io-1.4.5.js")
-    script(src="/cocos2d/cocos2d-js-v3.13-lite.js", charset="UTF-8")
+    script(src="/js/vue.min.js")
+    script(src="/js/socket.io-1.4.5.js")
     script(src="/js/game.js")
 

@@ -1,0 +1,11 @@
+.lt-room{
+    border-style: solid;
+    border-color: #ddd;
+    border-width: 1px;
+    border-radius: 4px 4px 0 0;
+    padding:20px;
+}
+.lt-message {
+    height: 200px;
+    overflow-y: auto;
+}
